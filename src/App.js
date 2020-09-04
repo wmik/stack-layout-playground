@@ -22,8 +22,25 @@ function getSpacing(position) {
   };
 }
 
+function getAlignment(position) {
+  switch (position) {
+    case 'left':
+    case 'top':
+      return 'flex-start';
+    case 'center':
+      return 'center';
+    case 'right':
+    case 'bottom':
+      return 'flex-end';
+    default:
+      return '';
+  }
+}
+
 const HStack = styled.div`
   display: flex;
+  align-items: ${(props) => getAlignment(props.alignItems)};
+
   > * {
     margin: ${getSpacing()};
     margin-top: ${getSpacing('top')};
@@ -47,14 +64,14 @@ export default function App() {
   return (
     <article>
       <h2>Horizontal stack</h2>
-      <HStack gapRight={40} gap={4}>
+      <HStack gapRight={40} gap={4} style={{ height: 200 }} alignItems="top">
         <Square />
         <Square />
         <Square />
         <Square />
       </HStack>
       <h2>Vertical stack</h2>
-      <VStack gapTop={4}>
+      <VStack gapTop={4} alignItems="center">
         <Square />
         <Square />
         <Square />
