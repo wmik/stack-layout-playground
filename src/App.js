@@ -9,15 +9,15 @@ function getSpacing(position) {
   return (props) => {
     switch (position) {
       case 'top':
-        return px(props.gapTop || props.gap);
+        return px(props.gapTop || '');
       case 'left':
-        return px(props.gapLeft || props.gap);
+        return px(props.gapLeft || '');
       case 'right':
-        return px(props.gapRight || props.gap);
+        return px(props.gapRight || '');
       case 'bottom':
-        return px(props.gapBottom || props.gap);
+        return px(props.gapBottom || '');
       default:
-        return '';
+        return px(props.gap || '');
     }
   };
 }
@@ -25,7 +25,7 @@ function getSpacing(position) {
 const HStack = styled.div`
   display: flex;
   > * {
-    margin: ${(props) => px(props.gap)};
+    margin: ${getSpacing()};
     margin-top: ${getSpacing('top')};
     margin-right: ${getSpacing('right')};
     margin-bottom: ${getSpacing('bottom')};
